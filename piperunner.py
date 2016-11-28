@@ -335,7 +335,7 @@ class GEArrayJob(GEJob):
 
         arraycommand = [self.ARRAYRUNNER]
         for i, arg in enumerate(args):
-            arraycommand += ["-{}".format(i+1)] + list(arg)
+            arraycommand += ["-{}".format(i+1)] + ['"{}"'.format(str(x).replace('"', '\"')) for x in arg]
         self.args = arraycommand + ["--", self.command] + ['"{}"'.format(x.replace('"', '\"')) for x in self.args]
 
         self.command = self.INTERPRETER
