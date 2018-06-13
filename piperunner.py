@@ -23,7 +23,7 @@ class GEJob(object):
         if val is None:
             return []
         elif isinstance(val, Iterable) and not isinstance(val, basestring):
-            return list(val)
+            return reduce(lambda a, b: a+b, map(GEJob.iter_or_item2list, val), [])
         else:
             return [val]
 
