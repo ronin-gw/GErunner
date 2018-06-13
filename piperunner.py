@@ -330,8 +330,8 @@ class GEArrayJob(GEJob):
         self.binary = True
         if not self.array:
             self.array = "1-{}".format(len(args[0]))
-        self.var["PATH"] = os.environ["PATH"]
-        self.var["LD_LIBRARY_PATH"] = os.environ["LD_LIBRARY_PATH"]
+        self.var["PATH"] = os.environ.get("PATH", '')
+        self.var["LD_LIBRARY_PATH"] = os.environ.get("LD_LIBRARY_PATH", '')
 
         arraycommand = [self.ARRAYRUNNER]
         for i, arg in enumerate(args):
